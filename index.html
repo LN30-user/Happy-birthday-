@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 17th Birthday!</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #003366;
+    }
+
+    #cake {
+      width: 250px;
+      margin-top: 30px;
+      display: none;
+      transition: transform 0.2s;
+    }
+
+    #cake:hover {
+      transform: scale(1.05);
+    }
+
+    #wish {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #003366;
+      padding: 0 30px;
+    }
+
+    .note {
+      font-size: 0.9em;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    #startBtn {
+      margin-top: 100px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3399ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #startBtn:hover {
+      background-color: #2878c7;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body onload="playMusic()">
+
+  <h1>Happy 17th Birthday!</h1>
+
+  <div class="center">
+    <button id="startBtn" onclick="showBirthday()">Click Here</button>
+    <img id="cake" src="cake.png" alt="Birthday Cake" />
+    <div id="wish">
+      <p>Happy 17th Birthday, may all your dreams and wishes come true. Congratulations!</p>
+      <p class="note">(Sorry if this is bad.)</p>
+    </div>
+  </div>
+
+  <!-- Musik ulang tahun -->
+  <audio id="bgMusic" src="happy-birthday.mp3" unautoplay muted></audio>
+
+  <script>
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      music.muted = false;
+      music.play().catch(() => {
+        console.warn("Autoplay unblocked");
+        document.body.addEventListener("click", () => {
+          music.play();
+        }, { once: true });
+      });
+    }
+
+    function showBirthday() {
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("cake").style.display = "block";
+      document.getElementById("wish").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
